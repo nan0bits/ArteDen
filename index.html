@@ -33,14 +33,7 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--text-secondary); }
-
-        /* Espaciado General */
-        .section-padding { padding: 8rem 10%; }
-        @media (max-width: 768px) { .section-padding { padding: 4rem 5%; } }
-
-        .section-header { margin-bottom: 5rem; max-width: 800px; }
-        .section-header h2 { font-size: 2.5rem; display: inline-block; margin-bottom: 1rem; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--text-dark); }
 
         /* HEADER */
         header {
@@ -54,7 +47,7 @@
         .logo-text { font-size: 1.4rem; font-weight: 700; color: var(--primary); text-transform: uppercase; line-height: 1; }
         .logo-text span { color: var(--secondary); }
 
-        .navbar a { text-decoration: none; color: var(--text-dark); margin-left: 2rem; font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
+        .navbar a { text-decoration: none; color: #000000; margin-left: 2rem; font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
         .navbar a:hover { color: var(--primary); }
         .btn-header { background: var(--primary); color: var(--white) !important; padding: 0.6rem 1.5rem; border-radius: 50px; }
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
@@ -68,8 +61,13 @@
         }
         .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; color: var(--primary); }
 
+        /* SECCIONES GENERALES */
+        .section-padding { padding: 8rem 10%; }
+        .section-header { margin-bottom: 5rem; max-width: 800px; }
+        .section-header h2 { font-size: 2.5rem; display: inline-block; margin-bottom: 1rem; }
+
         /* NOSOTROS */
-        .nosotros-container { display: flex; flex-wrap: wrap; gap: 4rem; align-items: flex-start; }
+        .nosotros-container { display: flex; flex-wrap: wrap; gap: 4rem; align-items: flex-start; margin-bottom: 5rem; }
         .video-col, .text-col { flex: 1; min-width: 300px; }
         .gdb-header { display: flex; align-items: center; margin-bottom: 3rem; }
         .line-deco { height: 2px; width: 60px; background-color: #aaa; margin-right: 20px; display: inline-block; }
@@ -77,7 +75,32 @@
         .video-wrapper { position: relative; padding-bottom: 100%; height: 0; overflow: hidden; border-radius: 5px; }
         .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
-        /* TRATAMIENTOS (GRID) */
+        /* --- NUEVO: ESTILOS DEL EQUIPO (SUB-SECCIÓN) --- */
+        .team-title { text-align: center; margin-bottom: 3rem; font-size: 2rem; color: var(--primary); }
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2rem; 
+        }
+        .team-card { 
+            position: relative; height: 380px; border-radius: 10px; overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer;
+        }
+        .team-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .team-card:hover img { transform: scale(1.1); }
+        
+        /* Información flotante sobre la foto */
+        .member-info {
+            position: absolute; bottom: 20px; left: 20px; right: 20px;
+            background: rgba(255,255,255,0.95); padding: 15px;
+            border-left: 4px solid var(--secondary);
+            border-radius: 4px;
+        }
+        .member-info h4 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 5px; font-weight: 700; }
+        .member-info p { font-size: 0.85rem; color: #666; margin: 0; }
+
+
+        /* TRATAMIENTOS */
         .treatments-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; text-align: center; }
         .treatment-box { cursor: pointer; transition: transform 0.3s ease; }
         .treatment-box:hover { transform: translateY(-10px); }
@@ -106,14 +129,18 @@
         .modal-hero {
             height: 50vh; background-size: cover; background-position: center; position: relative;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: white; text-align: center;
+            text-align: center;
         }
         .modal-hero-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); }
-        .modal-hero h1, .modal-breadcrumbs { position: relative; z-index: 2; }
+        
+        .modal-hero h1 { 
+            position: relative; z-index: 2; 
+            color: #ffffff !important; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
         
         .modal-body { display: flex; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 4rem 5%; gap: 4rem; }
         .modal-content-col { flex: 1; min-width: 300px; }
-        
         .modal-side-image { width: 100%; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); object-fit: cover; max-height: 400px; }
 
         /* BOTONES FLOTANTES */
@@ -136,13 +163,11 @@
             .menu-toggle { display: block; }
             .navbar { position: absolute; top: 70px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 1rem; display: none; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
             .navbar.active { display: flex; }
-            .modal-hero h1 { font-size: 2rem; padding: 0 20px; }
-            .social-floating { bottom: 20px; right: 50%; transform: translateX(50%); }
+            .section-padding { padding: 4rem 5%; }
         }
     </style>
 </head>
 <body>
-    <script src="script.js"></script> </body>
 
     <header id="header">
         <a href="#inicio" class="logo">
@@ -171,6 +196,7 @@
             <span class="line-deco"></span>
             <h2 style="font-size: 1.5rem; margin: 0; letter-spacing: 2px;">NUESTRA CLÍNICA</h2>
         </div>
+        
         <div class="nosotros-container">
             <div class="video-col">
                 <img src="https://buscodentista.com.mx/wp-content/uploads/2025/07/clinica-arte-dental-head.jpg" 
@@ -178,27 +204,56 @@
                 
                 <div class="video-wrapper">
                     <video autoplay muted loop playsinline>
-                        <source src="https://cdn.pixabay.com/video/2025/07/01/288800_large.mp4" style="width: 100%; height: auto; type="video/mp4">
+                        <source src="https://cdn.pixabay.com/video/2025/07/01/288800_large.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
             <div class="text-col">
                 <h3 style="font-size: 2rem; margin-bottom: 2rem;">Excelencia Odontológica con <br>Trayectoria Internacional</h3>
-                <p>En Arte Dental fusionamos la tecnología más avanzada con un trato humano y cálido. Cada paciente es un proyecto único de ingeniería y estética.</p>
+                <p>En Arte Dental fusionamos la tecnología más avanzada con un trato humano y cálido.</p>
                 <br>
-                <p>Nuestro equipo de especialistas trabaja bajo estrictos protocolos de calidad para garantizar resultados duraderos. Entendemos tu sonrisa como nuestra carta de presentación ante el mundo.</p>
+                <p>Nuestro equipo de especialistas trabaja bajo estrictos protocolos de calidad para garantizar resultados duraderos.</p>
             </div>
         </div>
-    </section>
+
+        <div id="equipo">
+            <h3 class="team-title">Nuestro Equipo</h3>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Doctor 1">
+                    <div class="member-info">
+                        <h4>Dr. Ricardo Méndez</h4>
+                        <p>Implantología</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Doctor 2">
+                    <div class="member-info">
+                        <h4>Dra. Nadia Valverde</h4>
+                        <p>Odontopediatría</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Doctor 3">
+                    <div class="member-info">
+                        <h4>Dr. Humberto Ciprian</h4>
+                        <p>Rehabilitación</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Doctor 4">
+                    <div class="member-info">
+                        <h4>Dra. Karina Aldana</h4>
+                        <p>Ortodoncia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
 
     <section id="servicios" class="section-padding">
         <div class="section-header">
             <h2>Especialidades</h2>
-            <div>
-                <div>
-                    <div></div>
-                </div>
-            </div>
             <p>Selecciona un tratamiento para ver el detalle.</p>
         </div>
 
@@ -223,8 +278,7 @@
     </section>
 
     <div id="treatment-modal" class="modal-overlay">
-        <button class="close-modal" onclick="cerrarDetalle()">&times;</button>
-        
+        <button class="close-modal" onclick="cerrarDetalle()">×</button>
         <div class="modal-content">
             <div class="modal-hero" id="modal-hero-bg">
                 <div class="modal-hero-overlay"></div>
@@ -273,11 +327,11 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Arte Dental. Todos los derechos reservados.</p>
+        <p>© 2025 Arte Dental. Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // 1. BASE DE DATOS DE TRATAMIENTOS
+        // DATOS
         const tratamientosData = {
             'prevencion': {
                 title: "Prevención",
@@ -309,7 +363,7 @@
             }
         };
 
-        // 2. FUNCIÓN DE MODAL
+        // FUNCIONES MODAL
         function abrirDetalle(id) {
             const modal = document.getElementById('treatment-modal');
             const data = tratamientosData[id];
@@ -333,7 +387,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        // 3. MENÚ MÓVIL
+        // MENU MOVIL
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             document.querySelector('.navbar').classList.toggle('active');
         });
