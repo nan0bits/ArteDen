@@ -22,18 +22,18 @@ body {
 h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
 /* --- Header Sticky --- */
+/* Busca esto y actualiza el z-index */
 header {
-    display: flex;
-    justify-content: space-between;
+    display: flex; 
+    justify-content: space-between; 
     align-items: center;
-    padding: 1rem 5%;
-    background: var(--white);
-    position: fixed; /* Siempre visible arriba */
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    padding: 1rem 5%; 
+    background: var(--white); 
+    position: fixed;
+    width: 100%; 
+    top: 0; 
+    z-index: 10000; /* <--- CAMBIO: Número muy alto para ganar a todo */
     box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-    transition: var(--transition);
 }
 
 .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
@@ -165,24 +165,37 @@ footer { background: #082d38; color: #bbd1d6; padding: 4rem 5% 1rem; }
 
 /* --- Responsivo (Mobile) --- */
 @media (max-width: 768px) {
-    .menu-toggle { display: block; color: var(--primary); }
+    .menu-toggle { display: block; }
     
     .navbar {
-        position: absolute;
-        top: 70px; left: 0; width: 100%;
-        background: var(--white);
+        position: fixed; /* Fijo para que no se mueva al hacer scroll */
+        top: 70px; /* Empieza justo debajo de la barra blanca del logo */
+        left: 0;
+        width: 100%;
+        height: 100vh; /* <--- CLAVE: Ocupa el 100% de la altura de la pantalla */
+        background: var(--white); /* Fondo blanco sólido */
         flex-direction: column;
-        text-align: center;
-        padding: 1rem;
-        display: none; /* Oculto por defecto en móvil */
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        align-items: center; /* Centra los textos */
+        padding-top: 3rem; /* Espacio arriba */
+        display: none;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee; /* Una línea sutil para separar del header */
+        overflow-y: auto; /* Permite scroll si el menú es muy largo */
     }
 
-    .navbar.active { display: flex; } /* Se activa con JS */
+    .navbar.active { display: flex; }
     
-    .navbar a { margin: 10px 0; }
-    
-    .hero h1 { font-size: 2.2rem; }
+    /* Hacemos los enlaces más grandes para que sean fáciles de tocar con el dedo */
+    .navbar a { 
+        margin: 20px 0; 
+        display: block; 
+        font-size: 1.2rem; /* Letra más grande */
+    }
+
+    /* Ajustes visuales extra */
+    .section-padding { padding: 4rem 5%; }
+    .modal-hero h1 { font-size: 2rem; padding: 0 20px; }
+    .social-floating { bottom: 20px; right: 50%; transform: translateX(50%); z-index: 9000; } /* Z-index menor que el header */
 }
 
 /* =========================================
